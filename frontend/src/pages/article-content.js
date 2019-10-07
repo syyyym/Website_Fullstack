@@ -50,10 +50,10 @@ const articles = [
         ]
     },
     {
-        name: 'lear-javascript',
+        name: 'learn-javascript',
         title: 'Learning Javascript language',
         content: [
-            `This is an article abot learning javascript language with proin congue
+            `This is an article about learning javascript language with proin congue
             ligula id risus posuere, vel eleifend ex egestas. Sed in turpis leo. 
             Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
             non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
