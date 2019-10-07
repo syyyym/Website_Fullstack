@@ -1,6 +1,6 @@
 Backend Node Project
 
-npx babel-node src/server.js
+npm start
 
 //localhost:8000
 
