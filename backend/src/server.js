@@ -1,23 +1,26 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-
-const articlesInfo = {
-    'learn-react': {
-        upvotes: 0,
-        comments: [],
-    },
-    'learn-node': {
-        upvotes: 0,
-        comments: [],
-    },
-    'learn-javascript': {
-        upvotes: 0,
-        comments: [],
-    },
-}
+import { MongoClient } from 'mongodb';
+const config = require('./config');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.get('/api/articles/:name', async (req, res) => {
+    try {
+        const articleName = req.params.name;
+        const client = await MongoClient.connect(config.dbURI, { useNewUrlParser: true });
+        const db = client.db('my-website');
+    
+        const articleInfo = await db.collection('articles').findOne({ name: articleName })
+        res.status(200).json(articleInfo);
+    
+        client.close();
+    } catch (error) {
+        res.status(500).json({ message: 'Error connecting to db', error });
+    }
+    
+})
 
 app.post('/api/articles/:name/upvote', (req, res) => {
     const articleName = req.params.name;
